@@ -1,0 +1,81 @@
+{
+  "name": "proyecto-ventas-2026-2",
+  "private": true,
+  "version": "0.1.0",
+  "main": "electron/main.js",
+  "description": "Aplicación de ventas empaquetada con Electron y Next.js",
+  "author": "Tecnosocks",
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail \"next dev -p 3002\" \"wait-on http://127.0.0.1:3002 && electron . --no-next\"",
+    "build": "node verify-setup.js && prisma generate && next build",
+    "start": "concurrently --kill-others-on-fail \"next start -p 3002\" \"wait-on http://127.0.0.1:3002 && electron . --no-next\"",
+    "lint": "next lint",
+    "prisma:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "electron": "electron .",
+    "dist": "npm run build && electron-builder",
+    "postinstall": "node verify-setup.js && prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "5.17.0",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "2.4.3",
+    "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^1.17.0",
+    "next": "15.4.2",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "20.14.2",
+    "@types/react": "18.3.3",
+    "@types/react-dom": "18.3.0",
+    "autoprefixer": "10.4.19",
+    "eslint": "8.57.0",
+    "eslint-config-next": "15.4.2",
+    "postcss": "8.4.37",
+    "prisma": "5.17.0",
+    "tailwindcss": "3.4.4",
+    "typescript": "5.5.4"
+  },
+  "build": {
+    "appId": "com.tecnosocks.ventas",
+    "productName": "Ventas Tecnosocks",
+    "asar": false,
+    "npmRebuild": false,
+    "files": [
+      ".next/**/*",
+      "electron/**/*",
+      "package.json",
+      "public/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "prisma",
+        "to": "prisma"
+      }
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "release"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
