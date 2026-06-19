@@ -104,15 +104,15 @@ export default function PortalesPage() {
             <div key={categoria} className="space-y-5">
 
               {/* Encabezado con logo SIN recuadro */}
-              <div className="flex items-center gap-4 border-b border-blue-500 pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 border-b border-blue-500 pb-4">
 
-                <div className="w-40 h-20 flex items-center">
+                <div className="w-56 h-28 flex items-center justify-center">
                   <Image
                     src={logos[categoria]}
                     alt={categoria}
-                    width={180}
-                    height={90}
-                    className="max-h-20 w-auto object-contain"
+                    width={224}
+                    height={112}
+                    className="max-h-28 w-auto object-contain"
                   />
                 </div>
 

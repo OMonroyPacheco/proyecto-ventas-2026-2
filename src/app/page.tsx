@@ -84,19 +84,30 @@ function HomeContent() {
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black px-6 py-16">
-      <div className="w-full max-w-3xl rounded-3xl bg-gray-800/50 backdrop-blur-xl border border-gray-700/50 p-10 shadow-2xl shadow-black/50">
-        <h1 className="text-4xl font-semibold text-white text-center">Sistema de Ventas</h1>
-        <p className="mt-3 text-gray-300 text-center">Inicia sesión para gestionar clientes, productos y ventas con base de datos.</p>
+      <div 
+        className="w-full max-w-3xl rounded-3xl backdrop-blur-2xl border border-gray-700/60 p-10 shadow-2xl shadow-black/60 relative overflow-hidden"
+        style={{
+          backgroundImage: "url('/images/logo.png')",
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '70%',
+          backgroundAttachment: 'fixed',
+        }}
+      >
+        <div className="absolute inset-0 bg-gray-900/70" />
+        <div className="relative z-10">
+          <h1 className="text-4xl font-semibold text-white text-center">Sistema de Ventas</h1>
+          <p className="mt-3 text-gray-300 text-center">Inicia sesión para gestionar clientes, productos y ventas con base de datos.</p>
 
-        <form className="mt-10 space-y-6" onSubmit={handleLogin}>
-          {redirectMessage ? (
-            <div className="rounded-2xl border border-yellow-500/60 bg-yellow-500/10 p-4 text-sm text-yellow-200">
-              {redirectMessage}
-            </div>
-          ) : null}
+          <form className="mt-10 space-y-6" onSubmit={handleLogin}>
+            {redirectMessage ? (
+              <div className="rounded-2xl border border-yellow-500/60 bg-yellow-500/10 p-4 text-sm text-yellow-200">
+                {redirectMessage}
+              </div>
+            ) : null}
 
-          <div>
-            <label className="mb-2 block text-sm font-medium text-gray-200">Correo</label>
+            <div>
+              <label className="mb-2 block text-sm font-medium text-gray-200">Correo</label>
             <input
               className="w-full rounded-2xl border border-gray-600 bg-gray-700/50 text-white placeholder-gray-400 px-4 py-3 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
               type="email"
@@ -137,6 +148,7 @@ function HomeContent() {
               Regístrate aquí
             </button>
           </p>
+        </div>
         </div>
       </div>
     </main>
